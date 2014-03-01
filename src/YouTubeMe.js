@@ -21,8 +21,15 @@ var possible = this.possible || {};
     //defaults
     p.pwidth = 500;
     p.pheight = 300;
-    p.onReady = function(){};
-    p.onStateChange = function(){};
+    p.onReady = function() {};
+    p.onStateChange = function() {};
+    p.playerVars = {
+        autoplay: 0,
+        controls: 1,
+        modestbranding: 0,
+        rel: 0,
+        showInfo: 0
+    }
 
     /**
      * Initialize instance. Apply params.
@@ -32,18 +39,20 @@ var possible = this.possible || {};
         this.videoId = params.videoId;
         this.container = params.container;
 
-        if (params.height !== undefined) {
+        if (params.height !== undefined)
             this.pheight = params.height;
-        }
-        if (params.width !== undefined) {
+
+        if (params.width !== undefined)
             this.pwidth = params.width;
-        }
 
         if (params.onReady)
             this.onReady = params.onReady;
 
         if (params.onStateChange)
             this.onStateChange = params.onStateChange;
+
+        if ( params.playerVars)
+            this.playerVars = params.playerVars;
     }
 
     /**
@@ -76,13 +85,7 @@ var possible = this.possible || {};
                 'onReady': this.onReady,
                 'onStateChange': this.onStateChange
             },
-            playerVars: {
-                autoplay: 0,
-                controls: 1,
-                modestbranding: 0,
-                rel: 0,
-                showInfo: 0
-            }
+            playerVars: this.playerVars
         });
     }
 

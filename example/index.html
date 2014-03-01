@@ -63,12 +63,19 @@
 
         $("#loadAnother").on("click", function() {
             /**
-             * Usage example.
+             * Usage example. 
              */
             var ytubeMe2 = new possible.YouTubeMe({
                 videoId: "T2dSE6_utcE",
                 container: 'player2',
-                onReady: onReady
+                onReady: onReady,
+                playerVars : {
+                    autoplay: 0,
+                    controls: 0,
+                    modestbranding: 1,
+                    rel: 1,
+                    showInfo: 1
+                }
             });
 
             ytubeMe2.playVideo();

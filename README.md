@@ -4,7 +4,14 @@ YouTubeMe
 JS proxy to interface with the YouTube API.
 
 <h5>Usage example.</h5>
-	<div id="playerDiv"></div>
+	
+    <div id="playerDiv"></div>
+    var ytubeMe = new possible.YouTubeMe({
+        videoId: "tXL7tA5070k",
+        container: 'playerDiv'});
+
+    //Add listeners
+    <div id="playerDiv"></div>
 	var ytubeMe = new possible.YouTubeMe({
 		videoId: "tXL7tA5070k",
 		width: 500,
@@ -28,5 +35,18 @@ JS proxy to interface with the YouTube API.
             $('body').append("<p>onPlayerStateChange: PAUSED event has fired.</p>");
         }
     }
+
+    //Pass in player variables
+    var ytubeMe2 = new possible.YouTubeMe({
+        videoId: "T2dSE6_utcE",
+        container: 'player2',
+        playerVars : {
+            autoplay: 0,
+            controls: 0,
+            modestbranding: 1,
+            rel: 1,
+            showInfo: 1
+        }
+    });
 
 <a href="http://rcolepeterson.com/YouTubeMe/example/index.html" target="_blank">DEMO</a>
