@@ -1,35 +1,49 @@
-//http://stackoverflow.com/questions/1114024/constructors-in-javascript-objects
 var possible = this.possible || {};
 (function($) {
     "use strict";
     /**
-     * [YouTubeMe description]
-     * @param {[type]} params [description]
+     * JS proxy to interface with the YouTube API.
+     * @param {object} params
+     *
+     *  {
+            videoId: "tXL7tA5070k", //video Id.
+            width: 500,
+            height: 300,
+            container: 'player', //div to target 
+            onPlayerReady: onPlayerReady //callback
+        }
+     * 
      */
     var YouTubeMe = function(params) {
         this.initialize(params);
     }
     var p = YouTubeMe.prototype;
-    
-    p.pwidth = 300;
-    p.pheight = 900;
-    
+    //defaults
+    p.pwidth = 500;
+    p.pheight = 300;
+    p.onReady = function(){};
+    p.onStateChange = function(){};
+
     /**
-     * [initialize description]
+     * Initialize instance. Apply params.
      * @param  {[type]} params [description]
-     * @return {[type]}        [description]
      */
     p.initialize = function(params) {
         this.videoId = params.videoId;
         this.container = params.container;
+
         if (params.height !== undefined) {
             this.pheight = params.height;
         }
         if (params.width !== undefined) {
             this.pwidth = params.width;
         }
-        if ( params.onPlayerReady)
-            this.onPlayerReady = params.onPlayerReady;
+
+        if (params.onReady)
+            this.onReady = params.onReady;
+
+        if (params.onStateChange)
+            this.onStateChange = params.onStateChange;
     }
 
     /**
@@ -44,7 +58,6 @@ var possible = this.possible || {};
             };
             $.getScript('//www.youtube.com/iframe_api');
         } else {
-            console.log(this.container + "already hav ethis.container videoId " + this.videoId);
             this.loadPlayer(this.container, this.videoId);
         }
     }
@@ -60,9 +73,8 @@ var possible = this.possible || {};
             height: this.pheight,
             frameborder: 0,
             events: {
-                'onReady': this.onPlayerReady
-                //,
-                //'onStateChange': this.onPlayerStateChange
+                'onReady': this.onReady,
+                'onStateChange': this.onStateChange
             },
             playerVars: {
                 autoplay: 0,
@@ -74,7 +86,7 @@ var possible = this.possible || {};
         });
     }
 
-    
+
     /**
      * [stopVideo description]
      * @param  {[type]} event [description]
