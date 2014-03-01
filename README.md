@@ -10,7 +10,8 @@ JS proxy to interface with the YouTube API.
         videoId: "tXL7tA5070k",
         container: 'playerDiv'});
 
-    //Add listeners
+<h5>Add listeners</h5>
+    
     <div id="playerDiv"></div>
 	var ytubeMe = new possible.YouTubeMe({
 		videoId: "tXL7tA5070k",
@@ -27,19 +28,18 @@ JS proxy to interface with the YouTube API.
     }
 
     var onStateChange = function(event) {
-        if (event.data == YT.PlayerState.PLAYING) {
+        if (event.data == YT.PlayerState.PLAYING)
             $('body').append("<p>onPlayerStateChange: PLAYING event has fired.</p>");
-        }
 
-        if (event.data == YT.PlayerState.PAUSED) {
+        if (event.data == YT.PlayerState.PAUSED)
             $('body').append("<p>onPlayerStateChange: PAUSED event has fired.</p>");
-        }
     }
 
-    //Pass in player variables
+<h5>Pass in player variables</h5>
+
     var ytubeMe2 = new possible.YouTubeMe({
         videoId: "T2dSE6_utcE",
-        container: 'player2',
+        container: 'playerDiv',
         playerVars : {
             autoplay: 0,
             controls: 0,
