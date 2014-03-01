@@ -28,3 +28,5 @@ JS proxy to interface with the YouTube API.
             $('body').append("<p>onPlayerStateChange: PAUSED event has fired.</p>");
         }
     }
+
+<a href="http://rcolepeterson.com/YouTubeMe/example/index.html" target="_blank">DEMO</a>
