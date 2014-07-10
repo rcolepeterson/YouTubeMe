@@ -24,6 +24,13 @@ var possible = this.possible || {};
     p.pheight = 300;
     p.onReady = function() {};
     p.onStateChange = function() {};
+    p.playerVars = {
+        autoplay: 0,
+        controls: 1,
+        modestbranding: 0,
+        rel: 0,
+        showInfo: 0
+    };
 
     /**
      * Initialize instance. Apply params.
@@ -39,13 +46,14 @@ var possible = this.possible || {};
         if (params.width !== undefined) {
             this.pwidth = params.width;
         }
-
         if (params.onReady) {
             this.onReady = params.onReady;
         }
-
         if (params.onStateChange) {
             this.onStateChange = params.onStateChange;
+        }
+        if (params.playerVars) {
+            this.playerVars = params.playerVars;
         }
     };
 
@@ -79,13 +87,7 @@ var possible = this.possible || {};
                 'onReady': this.onReady,
                 'onStateChange': this.onStateChange
             },
-            playerVars: {
-                autoplay: 0,
-                controls: 1,
-                modestbranding: 0,
-                rel: 0,
-                showInfo: 0
-            }
+            playerVars: this.playerVars
         });
     };
 
