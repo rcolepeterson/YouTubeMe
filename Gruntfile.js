@@ -109,10 +109,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('build', [
         'clean:dist',
-<<<<<<< HEAD
         'uglify'
-=======
-        'uglify',
     ]);
 
     grunt.registerTask('default', [
@@ -230,8 +227,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('build', [
         'clean:dist',
-        'uglify',
->>>>>>> c1c0bb2e6e44865006d4a555d5bb83fafad77911
+        'uglify'
     ]);
 
     grunt.registerTask('default', [

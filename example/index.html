@@ -61,7 +61,6 @@
 
     ytubeMe.playVideo();
 
-<<<<<<< HEAD
     $('#loadAnother').on('click', function() {
       /**
        * Usage example.
@@ -69,34 +68,15 @@
       var ytubeMe2 = new possible.YouTubeMe({
         videoId: 'T2dSE6_utcE',
         container: 'player2',
+        onReady: onReady,
         playerVars: {
           autoplay: 0,
           controls: 0,
           modestbranding: 1,
-          rel: 0,
+          rel: 1,
           showInfo: 1
-        },
-        onReady: onReady
+        }
       });
-=======
-        $("#loadAnother").on("click", function() {
-            /**
-             * Usage example. 
-             */
-            var ytubeMe2 = new possible.YouTubeMe({
-                videoId: "T2dSE6_utcE",
-                container: 'player2',
-                onReady: onReady,
-                playerVars : {
-                    autoplay: 0,
-                    controls: 0,
-                    modestbranding: 1,
-                    rel: 1,
-                    showInfo: 1
-                }
-            });
->>>>>>> c1c0bb2e6e44865006d4a555d5bb83fafad77911
-
       ytubeMe2.playVideo();
 
     });

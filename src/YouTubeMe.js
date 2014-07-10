@@ -6,7 +6,7 @@ var possible = this.possible || {};
      * JS proxy to interface with the YouTube API.
      * @param {object} params
      *
-     *  {
+       {
             videoId: "tXL7tA5070k", //video Id.
             width: 500,
             height: 300,
@@ -30,11 +30,8 @@ var possible = this.possible || {};
         modestbranding: 0,
         rel: 0,
         showInfo: 0
-<<<<<<< HEAD
     };
-=======
-    }
->>>>>>> c1c0bb2e6e44865006d4a555d5bb83fafad77911
+
 
     /**
      * Initialize instance. Apply params.
@@ -43,35 +40,22 @@ var possible = this.possible || {};
     p.initialize = function(params) {
         this.videoId = params.videoId;
         this.container = params.container;
-
-        if (params.height !== undefined)
+        if (params.height !== undefined) {
             this.pheight = params.height;
-
-        if (params.width !== undefined)
+        }
+        if (params.width !== undefined) {
             this.pwidth = params.width;
-<<<<<<< HEAD
         }
         if (params.onReady) {
-=======
-
-        if (params.onReady)
->>>>>>> c1c0bb2e6e44865006d4a555d5bb83fafad77911
             this.onReady = params.onReady;
         }
         if (params.onStateChange) {
             this.onStateChange = params.onStateChange;
-<<<<<<< HEAD
         }
         if (params.playerVars) {
             this.playerVars = params.playerVars;
         }
     };
-=======
-
-        if ( params.playerVars)
-            this.playerVars = params.playerVars;
-    }
->>>>>>> c1c0bb2e6e44865006d4a555d5bb83fafad77911
 
     /**
      * [playVideo description]
