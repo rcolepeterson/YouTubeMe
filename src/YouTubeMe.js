@@ -1,6 +1,7 @@
+/*global YT, jQuery*/
+'use strict';
 var possible = this.possible || {};
 (function($) {
-    "use strict";
     /**
      * JS proxy to interface with the YouTube API.
      * @param {object} params
@@ -9,20 +10,20 @@ var possible = this.possible || {};
             videoId: "tXL7tA5070k", //video Id.
             width: 500,
             height: 300,
-            container: 'player', //div to target 
+            container: 'player', //div to target
             onPlayerReady: onPlayerReady //callback
         }
-     * 
+     *
      */
     var YouTubeMe = function(params) {
         this.initialize(params);
-    }
+    };
     var p = YouTubeMe.prototype;
     //defaults
     p.pwidth = 500;
     p.pheight = 300;
-    p.onReady = function(){};
-    p.onStateChange = function(){};
+    p.onReady = function() {};
+    p.onStateChange = function() {};
 
     /**
      * Initialize instance. Apply params.
@@ -39,19 +40,21 @@ var possible = this.possible || {};
             this.pwidth = params.width;
         }
 
-        if (params.onReady)
+        if (params.onReady) {
             this.onReady = params.onReady;
+        }
 
-        if (params.onStateChange)
+        if (params.onStateChange) {
             this.onStateChange = params.onStateChange;
-    }
+        }
+    };
 
     /**
      * [playVideo description]
      * @return {[type]} [description]
      */
     p.playVideo = function() {
-        if (typeof(YT) == 'undefined' || typeof(YT.Player) == 'undefined') {
+        if (typeof(YT) === 'undefined' || typeof(YT.Player) === 'undefined') {
             var that = this;
             window.onYouTubeIframeAPIReady = function() {
                 that.loadPlayer();
@@ -60,7 +63,7 @@ var possible = this.possible || {};
         } else {
             this.loadPlayer(this.container, this.videoId);
         }
-    }
+    };
 
     /**
      * [loadPlayer description]
@@ -84,7 +87,7 @@ var possible = this.possible || {};
                 showInfo: 0
             }
         });
-    }
+    };
 
 
     /**
@@ -92,9 +95,9 @@ var possible = this.possible || {};
      * @param  {[type]} event [description]
      * @return {[type]}       [description]
      */
-    p.stopVideo = function(event) {
+    p.stopVideo = function() {
         this.ytPlayer.stopVideo();
-    }
+    };
 
     possible.YouTubeMe = YouTubeMe;
 
