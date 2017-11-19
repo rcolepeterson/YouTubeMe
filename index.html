@@ -19,17 +19,21 @@
     <button id="loadAnother">load another player</button>
   </div>
 
-  <script src="../components/jquery/jquery.min.js"></script>
   <script src="../src/YouTubeMe.js"></script>
   <script type="text/javascript">
   function init() {
+    var root = document.querySelector('body');
+    console.log('we init');
 
     /**
      * YouTube event listener.
      * @param  {[type]} event [description]
      */
     var onReady = function() {
-      $('body').append('<p>onPlayerReady event has fired.</p>');
+      console.log('we onReady');
+      var p = document.createElement('p');
+      p.textContent = 'onPlayerReady event has fired';
+      root.appendChild(p);
     };
 
     /**
@@ -37,13 +41,10 @@
      * @param  {[type]} event [description]
      */
     var onStateChange = function(event) {
-
-      if (event.data == YT.PlayerState.PLAYING) {
-        $('body').append('<p>onPlayerStateChange: PLAYING event has fired.</p>');
-      }
-
-      if (event.data == YT.PlayerState.PAUSED) {
-        $('body').append('<p>onPlayerStateChange: PAUSED event has fired.</p>');
+      var p = document.createElement('p');
+      p.textContent('onPlayerStateChange: ' + event.data);
+      if (event.data === YT.PlayerState.PLAYING) {
+        root.appendChild(p);
       }
     };
 
@@ -61,7 +62,8 @@
 
     ytubeMe.playVideo();
 
-    $('#loadAnother').on('click', function() {
+    var btn = document.querySelector('#loadAnother');
+    btn.addEventListener('click', function() {
       /**
        * Usage example.
        */

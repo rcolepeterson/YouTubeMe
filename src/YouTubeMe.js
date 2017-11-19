@@ -1,7 +1,7 @@
-/*global YT, jQuery*/
+/*global YT*/
 'use strict';
 var possible = this.possible || {};
-(function($) {
+(function() {
     /**
      * JS proxy to interface with the YouTube API.
      * @param {object} params
@@ -38,6 +38,7 @@ var possible = this.possible || {};
      * @param  {[type]} params [description]
      */
     p.initialize = function(params) {
+      console.log('u tube me - initialize', params.videoId);
         this.videoId = params.videoId;
         this.container = params.container;
         if (params.height !== undefined) {
@@ -67,7 +68,19 @@ var possible = this.possible || {};
             window.onYouTubeIframeAPIReady = function() {
                 that.loadPlayer();
             };
-            $.getScript('//www.youtube.com/iframe_api');
+            
+            var u = '//www.youtube.com/iframe_api';
+            var h = document.getElementsByTagName('head')[0], s = document.createElement('script');
+            s.async = true; s.src = u;
+            s.onload = s.onreadystatechange = function () {
+              if (!s.readyState || /loaded|complete/.test(s.readyState)) {
+                s.onload = s.onreadystatechange = null; if (h && s.parentNode) { h.removeChild(s) } s = undefined;
+                if (c) { c() }
+              }
+            };
+            h.insertBefore(s, h.firstChild);
+
+
         } else {
             this.loadPlayer(this.container, this.videoId);
         }
@@ -103,4 +116,4 @@ var possible = this.possible || {};
 
     possible.YouTubeMe = YouTubeMe;
 
-}(jQuery));
+}());
