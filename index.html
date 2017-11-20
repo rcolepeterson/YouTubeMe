@@ -2,89 +2,82 @@
 <html>
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <title>YouTubeMe example</title>
-  <style type="text/css">
-  body {
-    font-family: sans-serif;
-  }
-  </style>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>YouTubeMe example</title>
+    <style type="text/css">
+        body {
+            font-family: sans-serif;
+        }
+    </style>
 </head>
 
 <body onload="init();">
-  <h1>YouTubeMe example</h1>
-  <div id="playerDiv"></div>
-  <div id="player2"></div>
-  <div>
-    <button id="loadAnother">load another player</button>
-  </div>
+    <h1>YouTubeMe example</h1>
+    <div id="playerDiv"></div>
+    <div id="player2"></div>
+    <div>
+        <button id="loadAnother">load another player</button>
+    </div>
 
-  <script src="../src/YouTubeMe.js"></script>
-  <script type="text/javascript">
-  function init() {
-    var root = document.querySelector('body');
-    console.log('we init');
+    <script src="../src/YouTubeMe.js"></script>
+    <script type="text/javascript">
+        function init() {
+            var root = document.querySelector('body');
+            var p = document.createElement('p');
+            root.appendChild(p);
+            /**
+             * YouTube event listener.
+             * @param  {[type]} event [description]
+             */
+            var onReady = function (event) {
+                p.textContent = 'onPlayerReady event has fired';
+            };
 
-    /**
-     * YouTube event listener.
-     * @param  {[type]} event [description]
-     */
-    var onReady = function() {
-      console.log('we onReady');
-      var p = document.createElement('p');
-      p.textContent = 'onPlayerReady event has fired';
-      root.appendChild(p);
-    };
+            /**
+             * YouTube event listener.
+             * @param  {[type]} event [description]
+             */
+            var onStateChange = function (event) {
+                p.textContent = 'onPlayerStateChange: ' + event.data;
+            };
 
-    /**
-     * YouTube event listener.
-     * @param  {[type]} event [description]
-     */
-    var onStateChange = function(event) {
-      var p = document.createElement('p');
-      p.textContent('onPlayerStateChange: ' + event.data);
-      if (event.data === YT.PlayerState.PLAYING) {
-        root.appendChild(p);
-      }
-    };
+            /**
+             * Usage example.
+             */
+            var ytubeMe = new possible.YouTubeMe({
+                videoId: 'tXL7tA5070k',
+                width: 500,
+                height: 300,
+                container: 'playerDiv',
+                onReady: onReady,
+                onStateChange: onStateChange
+            });
 
-    /**
-     * Usage example.
-     */
-    var ytubeMe = new possible.YouTubeMe({
-      videoId: 'tXL7tA5070k',
-      width: 500,
-      height: 300,
-      container: 'playerDiv',
-      onReady: onReady,
-      onStateChange: onStateChange
-    });
+            ytubeMe.playVideo();
 
-    ytubeMe.playVideo();
+            var btn = document.querySelector('#loadAnother');
+            btn.addEventListener('click', function () {
+                /**
+                 * Usage example.
+                 */
+                var ytubeMe2 = new possible.YouTubeMe({
+                    videoId: 'T2dSE6_utcE',
+                    container: 'player2',
+                    onReady: onReady,
+                    playerVars: {
+                        autoplay: 0,
+                        controls: 0,
+                        modestbranding: 1,
+                        rel: 1,
+                        showInfo: 1
+                    }
+                });
+                ytubeMe2.playVideo();
 
-    var btn = document.querySelector('#loadAnother');
-    btn.addEventListener('click', function() {
-      /**
-       * Usage example.
-       */
-      var ytubeMe2 = new possible.YouTubeMe({
-        videoId: 'T2dSE6_utcE',
-        container: 'player2',
-        onReady: onReady,
-        playerVars: {
-          autoplay: 0,
-          controls: 0,
-          modestbranding: 1,
-          rel: 1,
-          showInfo: 1
+            });
+
         }
-      });
-      ytubeMe2.playVideo();
-
-    });
-
-  }
-  </script>
+    </script>
 </body>
 
 </html>

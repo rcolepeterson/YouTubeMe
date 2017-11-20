@@ -32,29 +32,17 @@ var possible = this.possible || {};
         showInfo: 0
     };
 
-
     /**
      * Initialize instance. Apply params.
      * @param  {[type]} params [description]
      */
     p.initialize = function(params) {
-      console.log('u tube me - initialize', params.videoId);
-        this.videoId = params.videoId;
-        this.container = params.container;
-        if (params.height !== undefined) {
-            this.pheight = params.height;
+        if (!params.videoId || !params.container){
+            throw Error('missing video id or container');
         }
-        if (params.width !== undefined) {
-            this.pwidth = params.width;
-        }
-        if (params.onReady) {
-            this.onReady = params.onReady;
-        }
-        if (params.onStateChange) {
-            this.onStateChange = params.onStateChange;
-        }
-        if (params.playerVars) {
-            this.playerVars = params.playerVars;
+
+        for ( var i in params){
+            this[i] = params[i];
         }
     };
 
@@ -68,14 +56,14 @@ var possible = this.possible || {};
             window.onYouTubeIframeAPIReady = function() {
                 that.loadPlayer();
             };
-            
+
             var u = '//www.youtube.com/iframe_api';
-            var h = document.getElementsByTagName('head')[0], s = document.createElement('script');
+            var h = document.getElementsByTagName('head')[0];
+            var s = document.createElement('script');
             s.async = true; s.src = u;
             s.onload = s.onreadystatechange = function () {
               if (!s.readyState || /loaded|complete/.test(s.readyState)) {
                 s.onload = s.onreadystatechange = null; if (h && s.parentNode) { h.removeChild(s) } s = undefined;
-                if (c) { c() }
               }
             };
             h.insertBefore(s, h.firstChild);
