@@ -2,7 +2,11 @@ YouTubeMe
 =========
 
 JS proxy to interface with the YouTube API.
-test
+
+`npm install`
+
+`npm start`
+
 <h5>Usage example.</h5>
 
     <div id="playerDiv"></div>
