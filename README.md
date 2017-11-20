@@ -6,9 +6,11 @@ test
 <h5>Usage example.</h5>
 
     <div id="playerDiv"></div>
+
     var ytubeMe = new possible.YouTubeMe({
         videoId: 'tXL7tA5070k',
-        container: 'playerDiv'});
+        container: 'playerDiv'
+      });
 
 <h5>Add listeners</h5>
 
@@ -24,15 +26,15 @@ test
 
     //YouTube event listeners.
     var onReady = function(event) {
-        $('body').append('<p>onPlayerReady event has fired.</p>');
+        // onPlayerReady event has fired.
     };
 
     var onStateChange = function(event) {
         if (event.data == YT.PlayerState.PLAYING)
-            $('body').append('<p>onPlayerStateChange: PLAYING event has fired.</p>');
+            // onPlayerStateChange: PLAYING event has fired.
 
         if (event.data == YT.PlayerState.PAUSED)
-            $('body').append('<p>onPlayerStateChange: PAUSED event has fired.</p>');
+            // onPlayerStateChange: PAUSED event has fired.
     };
 
 <h5>Pass in player variables</h5>
